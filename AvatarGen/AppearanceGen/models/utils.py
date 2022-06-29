@@ -116,7 +116,7 @@ def render_one_batch(v, f, eye, at):
          [ 0.,  0., -1.],
          [ 0.,  1.,  0.]], dtype=np.float32)).cuda()
     vertices = torch.matmul(vertices, rot_mat)
-    renderer = nr.renderer(camera_mode='look').cuda() ###
+    renderer = nr.Renderer(camera_mode='look').cuda()
     renderer.eye = eye.float()
     renderer.camera_direction = (at - eye) / torch.norm(at - eye)
     images, _, _ = renderer(vertices, faces, textures)
